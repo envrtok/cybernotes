@@ -3,7 +3,7 @@
 ---
 - airmon-ng start/stop/check wlan0/wlan0mon **(Wifi Adaptör Mod Değiştirme)**
 ---
-- airodump-ng wlan0mon **(Modemler Hakkında Bilgi Toplama)
+- airodump-ng wlan0mon **(Modemler Hakkında Bilgi Toplama)**
 	- BSSID: Modem MAC Adresi
 	- PWR: Yakınlık-Uzaklık
 	- CH: Kullanım Kanalı
