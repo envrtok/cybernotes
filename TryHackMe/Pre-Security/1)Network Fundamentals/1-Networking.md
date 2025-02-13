@@ -1,4 +1,4 @@
-- **Ping**: Bir bağlantının performansını veya güvenliğini test etmek için ICMP paketleri gönderilmesi.
+- **Ping**: Bir bağlantının performansını ve güvenliğini test etmek için ICMP paketleri gönderilmesi.
 ## **1.1) IP Adresi Nedir?**
 
 Bir **IP adresi (Internet Protocol Address)**, cihazların internette veya yerel ağda (LAN) birbirini tanıyabilmesi için kullanılan bir kimlik numarasıdır.
