@@ -1,113 +1,106 @@
-### **📌 1.Port Forwarding (Bağlantı Noktası Yönlendirme)**
+## **📌 1.Port Forwarding**
+### **📌 Port Forwarding Nedir?**
 
-🔹 **Port forwarding, yerel ağdaki (LAN) bir hizmeti internetten erişilebilir hâle getiren bir işlemdir.**  
-🔹 Normalde bir web sunucusu **sadece aynı ağdaki cihazlar tarafından** erişilebilir (**intranet**).  
-🔹 **Port forwarding ile, harici cihazlar (internet) bu hizmete ulaşabilir.**
+Port forwarding, **yerel ağdaki (LAN) cihazların internete erişmesini** sağlayan bir yönlendirme yöntemidir. **Varsayılan olarak, bir ağ içindeki sunucular sadece yerel cihazlara hizmet verebilir.**
 
----
+📌 **Örnek:**
 
-#### **📌 Port Forwarding Nasıl Çalışır?**
-
-1️⃣ **Yerel ağdaki bir cihaz (ör. 192.168.1.10) port 80’de bir web sunucusu çalıştırıyor.**  
-2️⃣ **Bu cihaz, yalnızca aynı ağ içindeki diğer cihazlardan erişilebilir.**  
-3️⃣ **Router’da port forwarding yapılandırılarak, gelen bağlantılar belirli bir cihaza yönlendirilir.**  
-4️⃣ **Dış dünyadaki kullanıcılar artık "Public IP (Örn: 82.62.51.70:80)" üzerinden erişebilir.**
-
-📌 **Özet:** **Port forwarding, belirli portları açarak internetten erişimi sağlar. Ancak, firewall'lar (güvenlik duvarları) gelen trafiği kısıtlayabilir.** 🔥
-### **📌 2.Firewall (Güvenlik Duvarı) **
-
-🔹 **Firewall, ağ trafiğini denetleyen ve filtreleyen bir güvenlik sistemidir.**  
-🔹 **Hangi trafiğin geçeceğine veya engelleneceğine karar verir.**
+- **192.168.1.10** IP’sine sahip bir web sunucusu, yalnızca aynı ağdaki cihazlarca erişilebilir.
+- **Port forwarding uygulanırsa**, **82.62.51.70** gibi bir genel IP üzerinden internet kullanıcıları da erişebilir.
 
 ---
 
-#### **📌 Firewall Ne Kriterlere Göre Trafiği Denetler?**
+### **📌 Port Forwarding vs. Güvenlik Duvarı**
 
-✅ **Kaynak IP:** Trafik hangi ağdan geliyor?  
-✅ **Hedef IP:** Trafik nereye gidiyor?  
-✅ **Port Numarası:** Örneğin, sadece 80 (HTTP) portuna izin verilebilir.  
-✅ **Protokol:** TCP, UDP veya her ikisini de filtreleyebilir.
+🔹 **Port forwarding**, **belirli portları açarak** internetten erişime izin verir.  
+🔹 **Firewall (Güvenlik Duvarı)**, **bu portlara gelen trafiğin güvenli olup olmadığını** kontrol eder.
 
-🔥 **Örnek:** Bir web sunucusuna sadece **80 ve 443 portları** üzerinden bağlantıya izin verilirken, diğer tüm portlardan gelen bağlantılar engellenebilir.
+📌 **Port forwarding işlemi, yönlendirici (router) üzerinde yapılandırılır.**
+
+🚀 **Özet:** **Port forwarding, yerel sunucuların internet üzerinden erişilebilir olmasını sağlar. Ancak, güvenlik risklerine karşı firewall ile birlikte kullanılması önerilir.**
+## **📌 2.Firewalls 101**
+### **📌 Firewall (Güvenlik Duvarı) Nedir?**
+
+Firewall, **ağa giren ve çıkan trafiği kontrol eden bir güvenlik mekanizmasıdır**. Bir sınır güvenliği gibi çalışarak belirli kriterlere göre **veri trafiğini izin verir veya engeller**.
+
+🔹 **İncelenen Kriterler:**
+
+- Trafiğin **kaynağı** (hangi IP’den geliyor?)
+- Trafiğin **hedefi** (hangi IP’ye gidiyor?)
+- **Port** (örneğin, sadece **80 numaralı porta** izin verilebilir)
+- **Protokol** (**TCP, UDP veya her ikisi** kontrol edilebilir)
 
 ---
 
-#### **📌 Firewall Türleri**
+### **📌 Firewall Türleri**
 
-|**Tür**|**Açıklama**|
+|**Kategori**|**Açıklama**|
 |---|---|
-|**Stateful Firewall**|**Bağlantının tamamını analiz eder.** Kararları daha akıllıdır ama daha fazla sistem kaynağı tüketir.|
-|**Stateless Firewall**|**Her paketi tek tek değerlendirir.** Daha hızlı ama daha az güvenlidir. Önceden belirlenen kurallara dayanır.|
+|**Stateful**|**Bağlantının tamamını analiz eder**, kararları **dinamik** verir. Daha güvenlidir ancak **fazla sistem kaynağı** kullanır.|
+|**Stateless**|**Tek tek paketleri inceler**, **statik kurallara** dayanır. Daha hızlı ve hafiftir ancak **daha az esnektir**.|
 
-🔥 **Örnek:**
+📌 **Stateful firewall’lar daha akıllıdır, ancak Stateless firewall’lar yoğun trafik saldırılarına (DDoS gibi) karşı daha etkilidir.**
 
-- **Stateful Firewall:** Eğer bir cihaz zararlı bağlantılar kuruyorsa, **tüm cihaz engellenir.**
-- **Stateless Firewall:** Zararlı **tek bir paket** algılansa bile, diğer paketler etkilenmez.
+🚀 **Özet:** **Firewall, ağ güvenliğini sağlayan bir filtredir. Stateful firewall daha kapsamlı, Stateless firewall ise daha hızlı ve hafiftir.**
+## **📌 3. VPN Basics**
+### **📌 VPN (Virtual Private Network) Nedir?**
 
-📌 **Özet:** **Firewall, belirlenen kurallara göre trafiği kontrol eder ve tehditleri engeller. Stateful firewall daha güvenli ama kaynak tüketir, stateless firewall daha hızlı ama kural bazlıdır.** 🔥
-### **📌3. VPN (Virtual Private Network)**
+VPN, **farklı ağlardaki cihazları internet üzerinden güvenli bir şekilde bağlayan bir teknolojidir**. **Şifrelenmiş bir tünel** oluşturarak, yalnızca VPN içindeki cihazların haberleşmesini sağlar.
 
-🔹 **VPN, internet üzerinden güvenli ve şifreli bir bağlantı oluşturarak uzak cihazların özel bir ağ gibi iletişim kurmasını sağlar.**  
-🔹 **İki ayrı ağ (ör. iki farklı ofis) VPN ile birleşerek sanki aynı ağdaymış gibi çalışabilir.**
+📌 **Örnek:**
 
----
-
-#### **📌 VPN’in Avantajları**
-
-✅ **Uzak ağları birleştirir.**  
-Örn: Farklı şehirlerdeki ofisler, VPN ile aynı ağdaymış gibi çalışabilir.
-
-✅ **Gizlilik sağlar.**  
-Veriler **şifrelenerek** gönderilir, böylece ağ dinleme (sniffing) saldırılarından korunur.
-
-✅ **Anonimlik sağlar.**  
-VPN kullanımı, ISS'lerin (İnternet Servis Sağlayıcılar) ve diğer aracıların trafiğini izlemesini zorlaştırır.
-
-🔹 **Örn:** TryHackMe, makinelerine güvenli erişim sağlamak için VPN kullanır.
+- **Şirket içi ofis ağlarını güvenli şekilde birleştirir.**
+- **Halka açık Wi-Fi ağlarında veri koruması sağlar.**
+- **Anonimlik sunarak, kullanıcı trafiğini ISP’lerden gizler.**
 
 ---
 
-#### **📌 VPN Teknolojileri**
+### **📌 VPN’in Avantajları**
+
+|**Avantaj**|**Açıklama**|
+|---|---|
+|**Farklı lokasyonları bağlar**|Şirketler, farklı ofislerdeki sunuculara erişebilir.|
+|**Gizlilik sağlar**|Trafik şifrelenerek veri dinlemeye karşı korunur.|
+|**Anonimlik sunar**|İnternet trafiği maskelenir, takip edilmesi zorlaşır.|
+
+---
+
+### **📌 VPN Türleri ve Teknolojileri**
 
 |**Teknoloji**|**Açıklama**|
 |---|---|
-|**PPP (Point-to-Point Protocol)**|Kimlik doğrulama ve veri şifreleme sağlar, ancak yönlendirme yapamaz.|
-|**PPTP (Point-to-Point Tunneling Protocol)**|VPN tünelleme sağlar, kurulumu kolaydır ama zayıf şifrelemeye sahiptir.|
-|**IPSec (Internet Protocol Security)**|IP üzerinden güçlü şifreleme sağlar, ancak kurulumu karmaşıktır.|
+|**PPP**|Şifreleme ve kimlik doğrulama sağlar, ancak yönlendirme yapamaz.|
+|**PPTP**|Kolay kurulum, zayıf şifreleme. Çoğu cihaz destekler.|
+|**IPSec**|Güçlü şifreleme, karmaşık kurulum. Çoğu modern cihazla uyumlu.|
 
-📌 **Özet:** **VPN, şifrelenmiş bir tünel oluşturarak güvenli ve özel bir ağ bağlantısı sağlar. İş yerleri, gizlilik isteyen kullanıcılar ve TryHackMe gibi platformlar için kritik öneme sahiptir.** 🔒🚀
-### **📌 4.Router ve Switch**
+🚀 **Özet:** **VPN, güvenli ve özel bir ağ bağlantısı sağlar. Farklı protokollerle çalışır ve hem gizlilik hem de veri güvenliği sunar.**
+## **📌 4.LAN Networking Devices**
 
-🔹 **Router (Yönlendirici)** ve **Switch (Anahtar)**, ağ cihazlarını bağlamak için kullanılır ancak farklı görevleri vardır.
+### **📌 Router Nedir?**
 
----
+Router, **ağları birbirine bağlayan ve veri yönlendiren** bir cihazdır. **OSI modelinin 3. katmanında (Network Layer) çalışır** ve en iyi yolu belirleyerek veriyi iletir.
 
-#### **📌 Router Nedir?**
+🔹 **Rota belirleme kriterleri:**
 
-✅ **Ağları birbirine bağlayan cihazdır.** (Örn: Ev ağı ↔ İnternet)  
-✅ **Verinin en iyi yolu kullanarak hedefe ulaşmasını sağlar.**  
-✅ **Layer 3 (Ağ Katmanı) üzerinde çalışır.**  
-✅ **Port yönlendirme, firewall kuralları gibi ayarları yönetebilir.**
+- **Kısa yol** (en az atlama noktası)
+- **Güvenilir yol** (bağlantı stabilitesi)
+- **Hızlı yol** (fiber > bakır)
 
-🔥 **Router, farklı ağları (IP adresleri farklı) birbirine bağlar ve en iyi rotayı belirler.**
-
----
-
-#### **📌 Switch Nedir?**
-
-✅ **Birden fazla cihazı aynı ağ içinde bağlar.**  
-✅ **Layer 2 Switch:** **Sadece MAC adreslerine göre veri iletir.**  
-✅ **Layer 3 Switch:** **MAC adreslerine ek olarak, IP adreslerini de kullanarak yönlendirme yapabilir.**
+📌 **Router, bir ağı internete veya başka bir ağa bağlayan temel cihazdır.**
 
 ---
 
-#### **📌 Layer 3 Switch & VLAN (Virtual Local Area Network)**
+### **📌 Switch Nedir?**
 
-✅ **VLAN, aynı switch içindeki cihazları sanal olarak ayırarak güvenlik ve yönetim kolaylığı sağlar.**  
-✅ **Örn:** **Muhasebe ve Satış Departmanı aynı switch’i kullanabilir ama birbirleriyle iletişim kuramaz.**
+Switch, **birden fazla cihazı birbirine bağlayan** bir ağ cihazıdır. **Ethernet kablolarıyla 3 ila 63 cihaza kadar bağlantı sağlayabilir.**
 
-📌 **Özet:**
+🔹 **Switch Türleri:**
 
-- **Router, farklı ağları bağlar ve yönlendirir.**
-- **Switch, aynı ağ içindeki cihazları birbirine bağlar.**
-- **Layer 3 switch, IP yönlendirmesi yaparak router’a yakın özellikler kazanır.** 🔥
+|**Tür**|**Açıklama**|
+|---|---|
+|**Layer 2 Switch**|**MAC adreslerini** kullanarak çerçeveleri yönlendirir.|
+|**Layer 3 Switch**|Hem **çerçeve yönlendirme** hem de **IP paket yönlendirme** yapabilir.|
+
+📌 **Layer 3 switch’ler, VLAN desteği sayesinde cihazları sanal olarak bölebilir.**
+
+🚀 **Özet:** **Router ağları bağlar, switch cihazları bağlar. Layer 3 switch, bazı router işlevlerini yerine getirebilir.**
